@@ -7,22 +7,43 @@ plugins {
     kotlin("plugin.spring") version "1.9.22"
 }
 
-group = "com.giggle"
-version = "0.0.1-SNAPSHOT"
-
 java {
     sourceCompatibility = JavaVersion.VERSION_17
 }
 
-repositories {
-    mavenCentral()
+allprojects {
+    group = "com.giggle"
+    version = "0.0.1-SNAPSHOT"
+
+    repositories {
+        mavenCentral()
+    }
 }
 
-dependencies {
-    implementation("org.springframework.boot:spring-boot-starter")
-    implementation("org.jetbrains.kotlin:kotlin-reflect")
-    testImplementation("org.springframework.boot:spring-boot-starter-test")
+subprojects {
+    apply(plugin = "java")
+
+    apply(plugin = "org.springframework.boot")
+    apply(plugin = "io.spring.dependency-management")
+    apply(plugin = "kotlin")
+    apply(plugin = "kotlin-spring")
+//	apply(plugin = "kotlin-jpa")
+
+    dependencies {
+        implementation("org.springframework.boot:spring-boot-starter")
+        implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+        implementation("org.springframework.boot:spring-boot-starter-web")
+
+        implementation("org.jetbrains.kotlin:kotlin-reflect")
+//		implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+
+        //test
+        testImplementation("org.springframework.boot:spring-boot-starter-test")
+        testImplementation("org.jetbrains.kotlin:kotlin-test")
+    }
+
 }
+
 
 tasks.withType<KotlinCompile> {
     kotlinOptions {
