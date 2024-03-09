@@ -7,7 +7,7 @@ import com.giggle.websocket.dto.request.bithumb.BithumbParameter
 import com.giggle.websocket.dto.request.bithumb.BithumbRequest
 import com.giggle.websocket.dto.response.bithumb.BithumbTickerResponse
 import com.giggle.websocket.log.Logger
-import com.giggle.websocket.service.RedisPublishService
+import org.springframework.kafka.core.KafkaTemplate
 import org.springframework.stereotype.Component
 import org.springframework.web.socket.CloseStatus
 import org.springframework.web.socket.TextMessage
@@ -17,7 +17,8 @@ import java.util.*
 
 @Component
 class BithumbHandler(
-    private val redisPublisher: RedisPublishService
+    private val kafkaTemplate: KafkaTemplate<String, String>
+
 ): TextWebSocketHandler() {
     private val logger = Logger()
     private var responseCheck = false
@@ -55,8 +56,8 @@ class BithumbHandler(
             false -> {
                 try {
                     responseCheck = true
+                    kafkaTemplate.send("bithumb", message.payload)
                     val ticker: BithumbTickerResponse = jacksonObjectMapper().readValue(message.payload)
-                    redisPublisher.publish("test", ticker)
                     logger.info("bithumb -> ${ticker.content.closePrice} ${ticker.content.symbol}")
 
                 } catch (e: JsonMappingException) {

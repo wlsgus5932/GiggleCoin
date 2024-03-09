@@ -3,3 +3,7 @@ plugins {
 }
 rootProject.name = "gigglecoin"
 include("websocket")
+include("infrastructure")
+include("infrastructure:kafka")
+//findProject(":infrastructure:kafka")?.name = "kafka"
+include("consumer")
