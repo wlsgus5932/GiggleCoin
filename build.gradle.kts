@@ -3,8 +3,10 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     id("org.springframework.boot") version "3.2.3"
     id("io.spring.dependency-management") version "1.1.4"
+
     kotlin("jvm") version "1.9.22"
     kotlin("plugin.spring") version "1.9.22"
+    kotlin("plugin.jpa") version "1.6.10"
 }
 
 java {
@@ -22,12 +24,12 @@ allprojects {
 
 subprojects {
     apply(plugin = "java")
-
     apply(plugin = "org.springframework.boot")
     apply(plugin = "io.spring.dependency-management")
+
     apply(plugin = "kotlin")
     apply(plugin = "kotlin-spring")
-//	apply(plugin = "kotlin-jpa")
+    apply(plugin = "kotlin-jpa")
 
     dependencies {
         implementation("org.springframework.boot:spring-boot-starter")

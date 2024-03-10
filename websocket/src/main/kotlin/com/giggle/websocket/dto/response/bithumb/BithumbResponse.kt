@@ -1,5 +1,6 @@
 package com.giggle.websocket.dto.response.bithumb
 
+//TODO: domain 모듈로 분리하기
 data class BithumbTickerResponse(
     val type: String,
     val content: TickerDto
@@ -22,4 +23,7 @@ data class BithumbTickerResponse(
         val chgAmt: String,
         val volumePower: String
     )
+
+    companion object {
+    }
 }
