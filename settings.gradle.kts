@@ -9,3 +9,4 @@ include("infrastructure:kafka")
 include("consumer")
 include("infrastructure:jpa")
 findProject(":infrastructure:jpa")?.name = "jpa"
+include("domain")

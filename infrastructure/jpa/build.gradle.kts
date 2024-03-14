@@ -7,6 +7,7 @@ dependencies {
 //        annotation("javax.persistence.MappedSuperclass")
 //        annotation("javax.persistence.Embeddable")
 //    }
+
 }
 
 

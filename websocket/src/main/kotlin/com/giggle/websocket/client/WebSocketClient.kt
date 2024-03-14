@@ -10,10 +10,8 @@ import org.springframework.web.socket.handler.TextWebSocketHandler
 
 @Component
 class WebSocketClient(
-    private val webSocketClient: StandardWebSocketClient,
     private val bithumbHandler: BithumbHandler,
     private val coinOneHandler: CoinOneHandler
-
 ) {
 
     @PostConstruct
@@ -24,7 +22,12 @@ class WebSocketClient(
     }
 
     private fun connectToWebSocket(url: String, handler: TextWebSocketHandler) {
-        val manager = WebSocketConnectionManager(webSocketClient, handler, url)
+        val manager =
+            WebSocketConnectionManager(
+                StandardWebSocketClient(),
+                handler,
+                url
+            )
         manager.isAutoStartup = true
         manager.start()
     }

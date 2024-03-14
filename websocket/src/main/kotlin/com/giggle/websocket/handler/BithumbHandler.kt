@@ -3,9 +3,8 @@ package com.giggle.websocket.handler
 import com.fasterxml.jackson.databind.JsonMappingException
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
-import com.giggle.websocket.dto.request.bithumb.BithumbParameter
-import com.giggle.websocket.dto.request.bithumb.BithumbRequest
-import com.giggle.websocket.dto.response.bithumb.BithumbTickerResponse
+import com.giggle.domain.bithumb.request.BithumbSocket
+import com.giggle.domain.bithumb.response.BithumbTickerResponse
 import com.giggle.websocket.log.Logger
 import org.springframework.kafka.core.KafkaTemplate
 import org.springframework.stereotype.Component
@@ -25,19 +24,13 @@ class BithumbHandler(
     private var timer: Timer? = null
 
     override fun afterConnectionEstablished(session: WebSocketSession) {
-        val subscribeMessage =
-            BithumbRequest.of(
-                BithumbParameter.Type.TICKER.value,
-                listOf(
-                    BithumbParameter.Symbols.BTC_KRW.value,
-                    BithumbParameter.Symbols.ETH_KRW.value
-                ),
-                listOf(
-                    BithumbParameter.TickTypes.THIRTY_MINUTES.value
-                )
-            )
+        val bithumbSocket =
+            BithumbSocket.createTickerRequest(listOf("BTC_KRW", "ETH_KRW"))
 
-            session.sendMessage(TextMessage(subscribeMessage))
+        val subscribeMessage =
+            jacksonObjectMapper().writeValueAsString(bithumbSocket)
+
+        session.sendMessage(TextMessage(subscribeMessage))
     }
 
     /*

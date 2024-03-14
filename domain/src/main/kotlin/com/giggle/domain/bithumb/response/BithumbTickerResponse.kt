@@ -1,6 +1,6 @@
-package com.giggle.websocket.dto.response.bithumb
+package com.giggle.domain.bithumb.response
 
-//TODO: domain 모듈로 분리하기
+//bithumb websocket api의 응답 값을 받기 위한 response
 data class BithumbTickerResponse(
     val type: String,
     val content: TickerDto
@@ -23,7 +23,4 @@ data class BithumbTickerResponse(
         val chgAmt: String,
         val volumePower: String
     )
-
-    companion object {
-    }
 }

@@ -1,5 +1,6 @@
 package com.giggle.websocket.dto.response.coinone
 
+//TODO: bithumb 구현 완료 후 domain 모듈로 이동
 data class CoinOneResponse(
     val responseType: String,              // DATA로 고정
     val channel: String,                   // TICKER 고정
@@ -17,10 +18,10 @@ data class TickerDto(
     val first: String,                     // 시가 (UTC 기준)
     val last: String,                      // 종가 (UTC 기준)
     val volumePower: String,               // 24시간 체결 강도 (0% ~ 500%)
-    val askBestPrice: String?,             // 매도 오더북상 제일 낮은 호가 , 존재하지 않으면 null
-    val askBestQty: String?,               // 매도 오더북상 제일 낮은 호가의 수량
-    val bidBestPrice: String?,             // 매수 오더북상 제일 높은 호가 , 존재하지 않으면 null
-    val bidBestQty: String?,               // 매수 오더북상 제일 높은 호가의 수량
+    val askBestPrice: String,             // 매도 오더북상 제일 낮은 호가 , 존재하지 않으면 null
+    val askBestQty: String,               // 매도 오더북상 제일 낮은 호가의 수량
+    val bidBestPrice: String,             // 매수 오더북상 제일 높은 호가 , 존재하지 않으면 null
+    val bidBestQty: String,               // 매수 오더북상 제일 높은 호가의 수량
     val id: String,                        // 티커 별 ID 값으로 클수록 최신 티커 정보
     val yesterdayHigh: String,             // 전일 고가 (UTC 기준)
     val yesterdayLow: String,              // 전일 저가 (UTC 기준)
