@@ -3,3 +3,4 @@ spring:
     include: kafka, jpa
 server:
   port: 8083
+
