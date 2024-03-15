@@ -16,6 +16,7 @@ class BithumbConsumer(
     fun listen(message: String) {
         val result: BithumbTickerResponse = jacksonObjectMapper().readValue(message)
 
+        //TODO: toEntity, toDto 어디에?
         val testEntity = BithumbTicker(
             id = 0,
             symbol = result.content.symbol,
