@@ -17,18 +17,20 @@ import java.util.*
 @Component
 class BithumbHandler(
     private val kafkaTemplate: KafkaTemplate<String, String>
-
 ): TextWebSocketHandler() {
     private val logger = Logger()
     private var responseCheck = false
-    private var timer: Timer? = null
 
     override fun afterConnectionEstablished(session: WebSocketSession) {
-        val bithumbSocket =
-            BithumbSocket.createTickerRequest(listOf("BTC_KRW", "ETH_KRW"))
+        val response =
+            BithumbSocket.createTickerRequest(
+                listOf("BTC_KRW", "ETH_KRW")
+            )
 
         val subscribeMessage =
-            jacksonObjectMapper().writeValueAsString(bithumbSocket)
+            jacksonObjectMapper().writeValueAsString(response)
+
+        println("bithumb::: $subscribeMessage")
 
         session.sendMessage(TextMessage(subscribeMessage))
     }
@@ -65,15 +67,15 @@ class BithumbHandler(
     }
 
     private fun extracted(session: WebSocketSession) {
-        timer = Timer()
-        timer?.schedule(object : TimerTask() {
+        val timer = Timer()
+        timer.schedule(object : TimerTask() {
             override fun run() {
                 if (!responseCheck) {
-                    timer?.cancel()
+                    timer.cancel()
                     session.close()
                     logger.error("No response from Bithumb WebSocket Server")
                 } else {
-                    timer?.cancel()
+                    timer.cancel()
                 }
             }
         }, 5000) // 소켓 최초 연결 후 5초안에 코인 관련 응답 값이 없다면 클라이언트 세션 종료

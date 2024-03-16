@@ -5,8 +5,6 @@ rootProject.name = "gigglecoin"
 include("websocket")
 include("infrastructure")
 include("infrastructure:kafka")
-//findProject(":infrastructure:kafka")?.name = "kafka"
 include("consumer")
 include("infrastructure:jpa")
-findProject(":infrastructure:jpa")?.name = "jpa"
 include("domain")

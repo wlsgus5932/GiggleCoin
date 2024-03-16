@@ -1,21 +1,17 @@
 package com.giggle.consumer.bithumb
 
-import com.giggle.domain.bithumb.response.BithumbTickerResponse
 import com.giggle.jpa.bithumb.entity.BithumbTicker
-import com.giggle.jpa.bithumb.repository.TickerRepository
+import com.giggle.jpa.bithumb.repository.BithumbTickerRepository
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
 @Service
-@Transactional(readOnly = true)
+@Transactional
 class BithumbService(
-    private val tickerRepository: TickerRepository
+    private val bithumbTickerRepository: BithumbTickerRepository
 ) {
 
     fun saveTicker(bithumbTicker: BithumbTicker) {
-        tickerRepository.save(bithumbTicker)
+        bithumbTickerRepository.save(bithumbTicker)
     }
-
-
-
 }

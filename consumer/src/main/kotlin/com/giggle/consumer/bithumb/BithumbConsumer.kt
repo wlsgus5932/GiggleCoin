@@ -4,41 +4,26 @@ import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import com.giggle.domain.bithumb.response.BithumbTickerResponse
 import com.giggle.jpa.bithumb.entity.BithumbTicker
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 import org.springframework.context.annotation.Configuration
 import org.springframework.kafka.annotation.KafkaListener
 
 @Configuration
 class BithumbConsumer(
-    private val bithumbService: BithumbService
+    private val bithumbService: BithumbService,
 ) {
+    private val logger = LoggerFactory.getLogger(this::class.java)
 
     @KafkaListener(topics = ["bithumb"], groupId = "bithumb-group")
     fun listen(message: String) {
-        val result: BithumbTickerResponse = jacksonObjectMapper().readValue(message)
+        val response: BithumbTickerResponse = jacksonObjectMapper().readValue(message)
 
-        //TODO: toEntity, toDto 어디에?
-        val testEntity = BithumbTicker(
-            id = 0,
-            symbol = result.content.symbol,
-            tickType = result.content.tickType,
-            date = result.content.date,
-            time = result.content.time,
-            openPrice = result.content.openPrice,
-            closePrice = result.content.closePrice,
-            lowPrice = result.content.lowPrice,
-            highPrice = result.content.highPrice,
-            value = result.content.value,
-            volume = result.content.volume,
-            sellVolume = result.content.sellVolume,
-            buyVolume = result.content.buyVolume,
-            prevClosePrice = result.content.prevClosePrice,
-            chgRate = result.content.chgRate,
-            chgAmt = result.content.chgAmt,
-            volumePower = result.content.volumePower
+        bithumbService.saveTicker(
+            BithumbTicker.toEntity(response.content)
         )
 
-        bithumbService.saveTicker(testEntity)
-        println("recieved: $result")
+        logger.info("recieved: $response")
     }
 
 }

@@ -4,8 +4,8 @@ spring:
     username: root
     password: 1234
     driver-class-name: com.mysql.cj.jdbc.Driver
-  main:
-    allow-bean-definition-overriding: true
+#  main:
+#    allow-bean-definition-overriding: true
 
   jpa:
     database-platform: org.hibernate.dialect.MySQL8Dialect

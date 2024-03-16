@@ -3,9 +3,9 @@ package com.giggle.domain.bithumb.response
 //bithumb websocket api의 응답 값을 받기 위한 response
 data class BithumbTickerResponse(
     val type: String,
-    val content: TickerDto
+    val content: BithumbTickerDto
 ) {
-    data class TickerDto(
+    data class BithumbTickerDto(
         val symbol: String,
         val tickType: String,
         val date: String,
