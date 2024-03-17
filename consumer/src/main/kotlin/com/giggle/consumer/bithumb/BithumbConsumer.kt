@@ -4,7 +4,6 @@ import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import com.giggle.domain.bithumb.response.BithumbTickerResponse
 import com.giggle.jpa.bithumb.entity.BithumbTicker
-import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.context.annotation.Configuration
 import org.springframework.kafka.annotation.KafkaListener

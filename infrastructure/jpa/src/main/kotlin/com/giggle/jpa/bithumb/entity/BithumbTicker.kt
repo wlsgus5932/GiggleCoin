@@ -1,11 +1,7 @@
 package com.giggle.jpa.bithumb.entity
 
 import com.giggle.domain.bithumb.response.BithumbTickerResponse
-import jakarta.persistence.Entity
-import jakarta.persistence.GeneratedValue
-import jakarta.persistence.GenerationType
-import jakarta.persistence.Id
-import jakarta.persistence.Table
+import jakarta.persistence.*
 
 @Entity
 @Table(name = "bithumb_ticker")
@@ -29,6 +25,10 @@ class BithumbTicker(
     var chgAmt: String,
     var volumePower: String
 ) {
+
+    /* TODO: 멀티모듈에서 toDto, toEntity 같은 객체간 변환을 해주는 함수는 어떻게 관리해야할지?
+     *
+     * */
 
     companion object {
         fun of(bithumbTicker: BithumbTicker): BithumbTickerResponse.BithumbTickerDto {

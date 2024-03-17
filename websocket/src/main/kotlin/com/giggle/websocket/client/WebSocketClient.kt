@@ -19,7 +19,6 @@ class WebSocketClient(
 
     @PostConstruct
     fun connect() {
-        println("진입")
         connectToWebSocket("wss://pubwss.bithumb.com/pub/ws", bithumbHandler)
         connectToWebSocket("wss://stream.coinone.co.kr", coinOneHandler)
         //TODO: upbit websocket 추가
@@ -27,7 +26,6 @@ class WebSocketClient(
 
     @Async
     fun connectToWebSocket(url: String, handler: TextWebSocketHandler) {
-        println("connect 진입")
         val manager =
             WebSocketConnectionManager(
                 StandardWebSocketClient(),

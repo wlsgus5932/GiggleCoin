@@ -10,5 +10,4 @@ class WebsocketApplication
 
 fun main(args: Array<String>) {
     runApplication<WebsocketApplication>(*args)
-    println("메인 진입!!!!!!!!!!")
 }

@@ -2,8 +2,8 @@ spring:
   kafka:
     bootstrap-servers: localhost:9093
     consumer:
-      #      group-id: my-group # 컨슈머 그룹 ID
-      #      auto-offset-reset: earliest # 컨슈머가 읽기 시작할 위치 (earliest, latest)
+      group-id: bithumb # 컨슈머 그룹 ID
+      auto-offset-reset: earliest # 컨슈머가 읽기 시작할 위치 (earliest, latest)
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
     producer:
