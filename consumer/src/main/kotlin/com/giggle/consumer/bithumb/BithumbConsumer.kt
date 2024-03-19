@@ -28,7 +28,7 @@ class BithumbConsumer(
         val lag = endOffsets - offset
         logger.info("Consumer Lag for partition $partition: $lag")
 
-//        bithumbService.saveTicker(response.content)
+        bithumbService.saveTicker(response.content)
         logger.info("Received: ${response.content.closePrice}")
     }
 

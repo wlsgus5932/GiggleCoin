@@ -8,3 +8,5 @@ include("infrastructure:kafka")
 include("consumer")
 include("infrastructure:jpa")
 include("domain")
+include("infrastructure:redis")
+findProject(":infrastructure:redis")?.name = "redis"
