@@ -1,9 +1,9 @@
-package com.giggle.websocket.handler
+package com.giggle.com.giggle.websocket.handler
 
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import com.giggle.domain.coinone.request.CoinOneSocket
-import com.giggle.websocket.log.Logger
+import com.giggle.com.giggle.websocket.log.Logger
 import org.springframework.stereotype.Component
 import org.springframework.web.socket.TextMessage
 import org.springframework.web.socket.WebSocketSession

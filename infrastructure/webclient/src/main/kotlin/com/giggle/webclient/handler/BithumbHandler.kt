@@ -1,11 +1,11 @@
-package com.giggle.websocket.handler
+package com.giggle.com.giggle.websocket.handler
 
 import com.fasterxml.jackson.databind.JsonMappingException
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import com.giggle.domain.bithumb.request.BithumbSocket
 import com.giggle.domain.bithumb.response.BithumbTickerResponse
-import com.giggle.websocket.log.Logger
+import com.giggle.com.giggle.websocket.log.Logger
 import org.springframework.kafka.core.KafkaTemplate
 import org.springframework.stereotype.Component
 import org.springframework.web.socket.CloseStatus

@@ -1,4 +1,4 @@
-package com.giggle.websocket.log
+package com.giggle.com.giggle.websocket.log
 
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory

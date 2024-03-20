@@ -1,6 +1,6 @@
-package com.giggle.websocket.client
+package com.giggle.com.giggle.websocket.client
 
-import com.giggle.websocket.handler.BithumbHandler
+import com.giggle.com.giggle.websocket.handler.BithumbHandler
 import com.giggle.websocket.handler.CoinOneHandler
 import jakarta.annotation.PostConstruct
 import org.springframework.boot.context.event.ApplicationReadyEvent
@@ -13,7 +13,7 @@ import org.springframework.web.socket.handler.TextWebSocketHandler
 
 @Component
 class WebSocketClient(
-    private val bithumbHandler: BithumbHandler,
+    private val bithumbHandler: com.giggle.com.giggle.websocket.handler.BithumbHandler,
     private val coinOneHandler: CoinOneHandler
 ) {
 

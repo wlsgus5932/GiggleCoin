@@ -1,0 +1,8 @@
+spring:
+  profiles:
+    include: kafka
+
+  data:
+    redis:
+      host: localhost
+      port: 6379

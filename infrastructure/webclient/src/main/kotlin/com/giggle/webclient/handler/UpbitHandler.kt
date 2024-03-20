@@ -1,4 +1,4 @@
-package com.giggle.websocket.handler
+package com.giggle.com.giggle.websocket.handler
 
 import org.springframework.web.socket.TextMessage
 import org.springframework.web.socket.WebSocketSession
