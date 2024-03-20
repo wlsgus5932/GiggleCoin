@@ -1,21 +1,6 @@
-plugins {
-    kotlin("jvm")
-}
-
-group = "com.giggle"
-version = "0.0.1-SNAPSHOT"
-
-repositories {
-    mavenCentral()
-}
-
 dependencies {
-    testImplementation("org.jetbrains.kotlin:kotlin-test")
-}
+    implementation("org.springframework.boot:spring-boot-starter-websocket")
+    implementation("org.springframework.boot:spring-boot-starter-webflux")
+    implementation(project(":infrastructure:redis"))
 
-tasks.test {
-    useJUnitPlatform()
-}
-kotlin {
-    jvmToolchain(17)
 }
