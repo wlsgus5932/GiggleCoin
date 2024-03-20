@@ -30,6 +30,7 @@ class WebSocketClient(
                 handler,
                 url
             )
+
         manager.isAutoStartup = true
         manager.start()
     }
