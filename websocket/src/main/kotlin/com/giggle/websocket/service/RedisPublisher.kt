@@ -25,7 +25,6 @@ class RedisPublisher (
         val latestKey = keys.maxByOrNull { key ->
             redisTemplate.opsForZSet().score("sortedSetKey", key)?.toDouble() ?: 0.0
         }
-
         val testData: String = latestKey.let { redisTemplate.opsForValue().get(it!!) }!!
 
         messagingTemplate.convertAndSend(TOPIC, testData)

@@ -2,6 +2,7 @@ package com.giggle.consumer.bithumb
 
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.giggle.domain.bithumb.response.BithumbTickerResponse
+import org.springframework.data.redis.core.ReactiveRedisTemplate
 import org.springframework.data.redis.core.StringRedisTemplate
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
@@ -10,7 +11,7 @@ import java.time.format.DateTimeFormatter
 
 @Service
 class BithumbService(
-    private val stringRedisTemplate: StringRedisTemplate
+    private val stringRedisTemplate: StringRedisTemplate,
 ) {
 
     @Transactional
@@ -18,6 +19,7 @@ class BithumbService(
         val startTime = System.currentTimeMillis()
 
         val tickerJson = jacksonObjectMapper().writeValueAsString(tickerDto)
+
         stringRedisTemplate.opsForValue().set("ticker:${tickerDto.symbol}:${tickerDto.time}", tickerJson)
 
         val endTime = System.currentTimeMillis()
